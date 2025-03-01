@@ -26,7 +26,8 @@ steps:
     pip install pytest-xdist
     pip install pytest-nunit
     pip install webdrivermanager
-    sudo snap refresh geckodriver
+    sudo apt update
+    sudo apt install firefox-geckodriver
   displayName: 'Install Plugins'
 
 - script: |
