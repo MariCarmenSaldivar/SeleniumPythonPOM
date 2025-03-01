@@ -20,11 +20,13 @@ steps:
     architecture: 'x64'
 
 - script: |
-   pip install selenium==4.12.0
-   pip install pytest
-   pip install pytest-html
-   pip install pytest-xdist
-   pip install pytest-nunit
+    pip install selenium==4.12.0
+    pip install pytest
+    pip install pytest-html
+    pip install pytest-xdist
+    pip install pytest-nunit
+    pip install webdrivermanager
+    webdrivermanager firefox chrome --linkpath /usr/local/bin
   displayName: 'Install Plugins'
 
 - script: |
