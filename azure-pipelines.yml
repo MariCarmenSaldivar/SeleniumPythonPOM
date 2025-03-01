@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10.6'
+    addToPath: true
+    architecture: 'x64'
+
+- script: |
+    pip install selenium==4.12.0
+    pip install pytest
+    pip install pytest-html
+    pip install pytest-xdist
+    pip install pytest-nunit
+    pip install webdrivermanager
+    sudo apt update
+    sudo apt install firefox-geckodriver
+  displayName: 'Install Plugins'
+
+- script: |
+    pwd
+    pytest  TestCases/test_loginpage.py --self-contained-html --browsername firefox
+  displayName: 'Run test'
+  
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '**/TEST-*.xml'
+
+# - task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+#   displayName: 'Publish Html Report'
+#   inputs:
+#     reportDir: 'D:\a\1\s\reports\Report.html'
