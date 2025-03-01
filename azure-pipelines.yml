@@ -26,7 +26,7 @@ steps:
     pip install pytest-xdist
     pip install pytest-nunit
     pip install webdrivermanager
-    webdrivermanager firefox chrome --linkpath /usr/local/bin
+    sudo apt install firefox-geckodriver
   displayName: 'Install Plugins'
 
 - script: |
