@@ -28,7 +28,7 @@ steps:
   displayName: 'Install Plugins'
 
 - script: |
-     'pytest -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5 --browsername firefox'
+     'pytest  TestCases/test_loginpage.py  -rA --html=.\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5 --browsername firefox'
   displayName: 'Run test'
   
 - task: PublishTestResults@2
